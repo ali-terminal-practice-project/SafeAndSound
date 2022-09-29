@@ -1,2 +1,3 @@
-# SafeAndSound
-🚀 a query a day keeps covid away
+# 🧸 SafeAndSound
+
+> a query a day keeps covid away
