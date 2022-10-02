@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -6,8 +7,8 @@
  * @flow strict-local
  */
 
-import React from 'react';
-import type {Node} from 'react';
+import React from 'react'
+import type { Node } from 'react'
 import {
   SafeAreaView,
   ScrollView,
@@ -16,7 +17,7 @@ import {
   Text,
   useColorScheme,
   View,
-} from 'react-native';
+} from 'react-native'
 
 import {
   Colors,
@@ -24,12 +25,12 @@ import {
   Header,
   LearnMoreLinks,
   ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+} from 'react-native/Libraries/NewAppScreen'
 
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
+const Section = ({ children, title }): Node => {
+  const isDarkMode = useColorScheme() === 'dark'
   return (
     <View style={styles.sectionContainer}>
       <Text
@@ -51,15 +52,15 @@ const Section = ({children, title}): Node => {
         {children}
       </Text>
     </View>
-  );
-};
+  )
+}
 
 const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+  const isDarkMode = useColorScheme() === 'dark'
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  }
 
   return (
     <SafeAreaView style={backgroundStyle}>
@@ -92,8 +93,8 @@ const App: () => Node = () => {
         </View>
       </ScrollView>
     </SafeAreaView>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   sectionContainer: {
@@ -112,6 +113,50 @@ const styles = StyleSheet.create({
   highlight: {
     fontWeight: '700',
   },
-});
+})
 
 export default App;
+=======
+import * as React from 'react'
+import { Text, View } from 'react-native'
+import { NavigationContainer } from '@react-navigation/native'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import HomeComponent from './components/HomeComponent'
+
+function HomeScreen () {
+  return (
+    <View style={{ backgroundColor: '#ffff', flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <HomeComponent />
+    </View>
+  )
+}
+
+function SettingsScreen () {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>暂无...</Text>
+    </View>
+  )
+}
+
+const Tab = createBottomTabNavigator()
+
+export default function App () {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="Query" component={HomeScreen} options={{
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }} />
+        <Tab.Screen name="History" component={SettingsScreen} options={{
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  )
+}
+>>>>>>> master
