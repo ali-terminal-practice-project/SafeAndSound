@@ -15,7 +15,7 @@ function HomeScreen () {
 function SettingsScreen () {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>暂无历史记录...</Text>
+      <Text>暂无...</Text>
     </View>
   )
 }
