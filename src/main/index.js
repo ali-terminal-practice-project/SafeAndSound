@@ -10,8 +10,8 @@ export default class Menu extends Component {
                 <Text> 这是主菜单 </Text>
 
                 <Button
-                    title='疫情防控'
-                    onPress={() => navigation.navigate('Detect')}
+                    title='疫情防控政策'
+                    onPress={() => navigation.navigate('Policy')}
                 />
                 <Button
                     title='购票'
