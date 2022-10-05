@@ -13,15 +13,21 @@ export default class Policy extends Component {
     super(props);
     this.state = {
       data: this._createAreaData(),               // 用于存放所有的城市数据
-      user: 'a',
-      pickedFrom: '出发城市选择2',
-      pickedTo: '目的城市'
+      isShow: false,
+      pickedFrom: '出发城市选择',
+      pickedTo: '目的城市选择',
+      policys:{
+        outFrom:"此地区暂无特殊疫情防控政策措施",
+        inFrom:"此地区暂无特殊疫情防控政策措施",
+        outTo:"此地区暂无特殊疫情防控政策措施",
+        inTo:"此地区暂无特殊疫情防控政策措施"
+      }
     }
     this.source = citys
 
 
   }
-_createAreaData() {
+  _createAreaData() {
     let data = [];
     let len = area.length;
     for (let i = 0; i < len; i++) {
@@ -77,57 +83,50 @@ _createAreaData() {
     });
     Picker.show();
   }
+  showResult() {
+    // alert(1)
+    this.setState({ isShow: true })
 
-
-
-  showCity = () => {
-    console.log(this.state.data)
-    // console.log(this.pickedFrom)
-    alert(this.state.pickedFrom)
   }
-  showCity2 = () => {
-    console.log(this.state.data)
-    // console.log(this.pickedFrom)
-    alert(this.state.pickedTo)
-  }
-
-
   render() {
     const { navigation } = this.props
+
+    let showForm = this.state.isShow ?
+      <View>
+
+        <Text style={[style.resultTitle1]}>{this.state.pickedFrom}</Text>
+        <Text style={[style.resultTitle2]}>外出政策</Text>
+        <Text style={[style.context]}>{this.state.policys.outFrom}</Text>
+        
+        <Text style={[style.resultTitle2]}>来访政策</Text>
+        
+        <Text style={[style.context]}>{this.state.policys.inFrom}</Text>
+        <Text style={[style.resultTitle1]}>{this.state.pickedTo}</Text>
+        <Text style={[style.resultTitle2]}>外出政策</Text>
+        <Text style={[style.context]}>{this.state.policys.outTo}</Text>
+        <Text style={[style.resultTitle2]}>来访政策</Text>
+        <Text style={[style.context]}>{this.state.policys.inTo}</Text>
+      </View>
+      : null
+    // 以上实现隐藏和显示最后查询结果
     return (
       <View>
-        <Text> 疫情防控政策 </Text>
-
-
-
+        <Text style={[style.title]}> 疫情防控政策 </Text>
         <TouchableOpacity style={{ marginTop: 10, marginLeft: 20 }} onPress={this._showAreaPicker.bind(this)}>
           <Text>{this.state.pickedFrom}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={{ marginTop: 10, marginLeft: 20 }} onPress={this._showAreaPicker2.bind(this)}>
           <Text>{this.state.pickedTo}</Text>
         </TouchableOpacity>
-
-        <TextInput
-          placeholder="test picker with input"
-          style={{
-            height: 40,
-            borderColor: 'gray',
-            borderWidth: 1,
-            marginLeft: 20,
-            marginRight: 20,
-            marginTop: 10,
-            padding: 5
-          }}
-        />
         <Button
           title='查询疫情出入政策'
-          onPress={() => this.showCity2()}
+          onPress={() => this.showResult()}
         />
         <Button
           title="返回主菜单"
           onPress={() => navigation.navigate('Menu')}
         />
-
+        {showForm}
 
       </View>
     )
@@ -135,14 +134,19 @@ _createAreaData() {
 }
 
 const style = StyleSheet.create({
-  label: {
-    fontSize: 14,
-    color: '#333333'
-  },
-  text: {
-    fontSize: 14,
-    alignItems: 'center',
-    color: 'red'
-  }
 
+  title: {
+    fontSize: 30,
+    color: 'red'
+  },
+  resultTitle1: {
+    fontSize: 20,
+    color: 'blue'
+  },
+  resultTitle2: {
+    fontSize: 15
+  },
+  context:{
+    fontSize: 10,
+  }
 })
