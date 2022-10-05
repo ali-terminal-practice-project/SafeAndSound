@@ -19,7 +19,6 @@ function HomeScreen({ navigation }) {
                 title={"进入页面"}
                 onPress={() => navigation.navigate('Login')} />
 
-
         </View>
     );
 }

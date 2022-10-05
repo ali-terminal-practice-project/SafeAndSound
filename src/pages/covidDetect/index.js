@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, Button } from 'react-native'
 
-export default class index extends Component {
+export default class Index extends Component {
   render() {
     const { navigation } = this.props
 
