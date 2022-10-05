@@ -14,15 +14,14 @@ export default class Policy extends Component {
     this.state = {
       data: this._createAreaData(),               // 用于存放所有的城市数据
       user: 'a',
-      pickedFrom:'出发城市选择',
-      pickedTo:'目的城市'
+      pickedFrom: '出发城市选择2',
+      pickedTo: '目的城市'
     }
     this.source = citys
-   
-    
-  }
 
-  _createAreaData() {
+
+  }
+_createAreaData() {
     let data = [];
     let len = area.length;
     for (let i = 0; i < len; i++) {
@@ -45,7 +44,7 @@ export default class Policy extends Component {
       selectedValue: ['河北', '唐山', '古冶区'],
       onPickerConfirm: pickedValue => {
         console.log('area', pickedValue);
-        this.setState({pickedFrom:pickedValue})
+        this.setState({ pickedFrom: pickedValue })
         console.log(1)
       },
       onPickerCancel: pickedValue => {
@@ -64,8 +63,8 @@ export default class Policy extends Component {
       selectedValue: ['河北', '唐山', '古冶区'],
       onPickerConfirm: pickedValue => {
         console.log('area', pickedValue);
-       this.setState({pickedTo:pickedValue})
-        
+        this.setState({ pickedTo: pickedValue })
+
         console.log(2)
       },
       onPickerCancel: pickedValue => {
@@ -98,16 +97,9 @@ export default class Policy extends Component {
     return (
       <View>
         <Text> 疫情防控政策 </Text>
-        <Button
-          title='出发城市'
-          onPress={() => this.showCity()}
-        />
-         <Button
-          title='目的城市'
-          onPress={() => this.showCity2()}
-        />
 
-        
+
+
         <TouchableOpacity style={{ marginTop: 10, marginLeft: 20 }} onPress={this._showAreaPicker.bind(this)}>
           <Text>{this.state.pickedFrom}</Text>
         </TouchableOpacity>
@@ -127,11 +119,11 @@ export default class Policy extends Component {
             padding: 5
           }}
         />
-          <Button
+        <Button
           title='查询疫情出入政策'
           onPress={() => this.showCity2()}
         />
-       <Button
+        <Button
           title="返回主菜单"
           onPress={() => navigation.navigate('Menu')}
         />
