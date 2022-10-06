@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
 import {Text, StyleSheet, View, Button} from 'react-native';
 // import { NavigationContainer } from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import Menu from './main/index';
-import Detect from './pages/covidDetect/index';
-import Policy from './pages/covidPolicy/index';
-import Download from './pages/download/index';
-import Hotel from './pages/hotel/index';
-import Ticket from './pages/ticket/index';
-import Tip from './pages/travelTip';
+import { createStackNavigator } from '@react-navigation/stack'
+import Menu from './main/index'
+import Detect from './pages/covidDetect/Detect'
+// import Policy from './pages/covidPolicy/Test'
+import Policy from './pages/covidPolicy/Policy'
+import Download from './pages/download/Download'
+import Hotel from './pages/hotel/Hotel'
+import Ticket from './pages/ticket/Ticket'
+import Tip from './pages/travelTip/Tip'
 
 function HomeScreen({navigation}) {
   return (
