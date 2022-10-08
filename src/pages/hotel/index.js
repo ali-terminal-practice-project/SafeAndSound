@@ -49,8 +49,17 @@ export default class Index extends Component {
             <Text 
               style={style.linkTitle} 
               onPress={()=>{Linking.openURL('https://www.fliggycn.com/')}}>
-              去哪儿
+              飞猪
             </Text>
+          </View>
+          <View style={style.linkRed}>
+            <Text>没想好酒店？打开小红书看看吧</Text>
+            <Button 
+              onPress={()=>{Linking.openURL('https://www.xiaohongshu.com/explore')}}
+              title="打开小红书"
+              color="#DE868F"  
+            >
+            </Button>
           </View>
         </View>
       </View>
@@ -75,6 +84,10 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginVertical: 40
+  },
+  linkRed:{
+    marginVertical: 20
   }
 })
