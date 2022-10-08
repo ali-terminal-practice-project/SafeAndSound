@@ -5,8 +5,8 @@ import {
   Dimensions
 } from 'react-native'
 import citys from './city.json'
-// import Picker from 'react-native-picker'
-import {Picker} from '@react-native-picker/picker';
+import Picker from 'react-native-picker'
+// import {Picker} from '@react-native-picker/picker';
 import area from './area.json'
 export default class Policy extends Component {
 

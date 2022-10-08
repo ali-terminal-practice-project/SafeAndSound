@@ -23,6 +23,7 @@ export default class Index extends Component {
       memo:"",
       curCity:'杭州',
       desCity: '成都'
+      // 两个城市可以根据政策查询Policy中查询到的得到值
     };
   }
   //  'shachen': ,'wu':,'bingbao',
