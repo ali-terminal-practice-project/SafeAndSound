@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Dimensions, StyleSheet, TextInput,DeviceEventEmitter} from 'react-native'
+import { Text, View, Dimensions, StyleSheet, TextInput, StatusBar,DeviceEventEmitter} from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import Fontisto from 'react-native-vector-icons/Fontisto'
 import Global from '../../Global'
@@ -9,14 +9,14 @@ export default class Index extends Component {
     this.state = {
       curdata: {wea_img: 'cloud', date: '2022-10-01', wea: '多云', tem_night: '23', tem_day: '30', win: '', win_speed: '3级', city: '北京'},
       desdata: {wea_img: 'cloud', date: '2022-10-01', wea: '多云', tem_night: '23', tem_day: '30', win: '', win_speed: '3级', city: '北京'},
-      lifeComment: {},
+      lifeTips: null,
       isLoading: true,
       weaIcon: {
         "xue": "snow", 
         "lei": "lightnings",
         "yun":"cloudy",
         "yu":"rain",
-        "yin":"cloud",
+        "yin":"cloudy",
         "qing":"sun",
         "shachen": "wind",
         "wu": "fog"
@@ -50,17 +50,18 @@ export default class Index extends Component {
 
   //  'shachen': ,'wu':,'bingbao',
   componentDidMount() {
-    const {curCity, desCity} = this.state;
-    // 获取出发地天气
-    fetch(`https://v0.yiketianqi.com/free/day?appid=32189289&appsecret=3RdKetVh&unescape=1&city=${curCity}`)
-      .then((response) => response.json())
-      .then((json) => {
-        this.setState({ curdata: json });
-      })
-      .catch((error) => console.error(error))
-      .finally(() => {
-        this.setState({ isLoading: false });
-      });
+      const {curCity, desCity} = this.state;
+      // 获取出发地天气
+      fetch(`https://v0.yiketianqi.com/free/day?appid=32189289&appsecret=3RdKetVh&unescape=1&city=${curCity}`)
+        .then((response) => response.json())
+        .then((json) => {     
+          this.setState({ curdata: json });
+        })
+        .catch((error) => console.error(error))
+        .finally(() => { //请求数据结束
+          this.setState({ isLoading: false });
+        });
+    // });
     //获取目的地天气 
     fetch(`https://v0.yiketianqi.com/free/day?appid=32189289&appsecret=3RdKetVh&unescape=1&city=${desCity}`)
     .then((response) => response.json())
@@ -72,10 +73,11 @@ export default class Index extends Component {
     .finally(() => {
       this.setState({ isLoading: false });
     });
+    // 出行推荐
     fetch('https://www.tianqiapi.com/life/lifepro?appid=32189289&appsecret=3RdKetVh')
     .then((response) => response.json()) //将响应返回的response中的body(response流)解析成json格式
     .then((json) => {
-      this.setState({ lifeComment: json});
+      this.setState({ lifeTips: json});
     })
     .catch((error) => console.error(error))
     .finally(() => {
@@ -83,21 +85,31 @@ export default class Index extends Component {
     });
   }
   render() {
-    // console.log(localStorage.getItem('desdata'));
     const { navigation } = this.props;
-    const { curdata,desdata, weaIcon, memo} = this.state;
+    const { curdata,desdata, weaIcon, memo, lifeTips} = this.state;
     const {wea_img:cur_wea_img, date: cur_date, wea: cur_wea, tem_night: cur_tem_night, tem_day: cur_tem_day, win: cur_win, win_speed: cur_win_speed, city: cur_city} = curdata;
     const {wea_img:des_wea_img, date: des_date, wea: des_wea, tem_night: des_tem_night, tem_day: des_tem_day, win: des_win, win_speed: des_win_speed, city: des_city} = desdata;
+    let tipsData = null;
+    let tipsDec = null;
+    let showTips = null;
+    lifeTips ? tipsData =  Object.entries(lifeTips.data) : null;
+    tipsData ? tipsDec = tipsData.map(item=>item[1]) : null;
+    tipsDec ? showTips = [3,4,9,12,21,22,28].map((item)=>{
+      return tipsDec[item];
+    }) : null;
+    // 穿衣，防晒指数，感冒，逛街，交通指数，旅游指数，舒适度指数，雨伞指数
+    // 对象过滤函数
     return (
       <View style={style.contain}>
-        <View style={style.topBar}>
+        <StatusBar backgroundColor="#54BCBD"></StatusBar>
+        {/* <View style={style.topBar}>
           <Ionicons
             name={"chevron-back-outline"} 
             style={style.topBarIcon} 
             onPress={() => navigation.navigate('Menu')}>
           </Ionicons>
           <Text style={style.topBarText}>出行小贴士</Text>
-        </View>
+        </View> */}
         <View style={style.tipsContain}>
           <View style={[style.itemContain,style.weatherContain]}>
             <View style={style.weather}>
@@ -105,7 +117,7 @@ export default class Index extends Component {
               <Text style={{fontSize: 15}}>{cur_date}</Text>
               <View style={style.weatherRow}>
                 <Fontisto 
-                  name={`${weaIcon[cur_wea_img]}`}
+                  name={weaIcon[cur_wea_img] || "cloudy"}
                   style={style.weatherIcon}> 
                 </Fontisto>
                 <Text style={style.weatherText}>{cur_wea}</Text>
@@ -130,7 +142,7 @@ export default class Index extends Component {
               <Text style={{fontSize: 15}}>{des_date}</Text>
               <View style={style.weatherRow}>
                 <Fontisto 
-                  name={`${weaIcon[des_wea_img]}`}
+                  name={weaIcon[des_wea_img] || "cloudy"}
                   style={style.weatherIcon}> 
                 </Fontisto>
                 <Text style={style.weatherText}>{des_wea}</Text>
@@ -152,13 +164,19 @@ export default class Index extends Component {
             </View>
           </View>
           <View style={style.itemContain}>
-            <Text style={style.comment}>
-              今日推荐：{
+            <View><Text style={style.tipsTitle}>出行建议：</Text></View>
+            <View style={style.tipsDesc}>
+             {
+                showTips ? showTips.map((item, key)=>{
+                  return (
+                   showTips[key] ? <Text key={key}>{showTips[key].name}：{showTips[key].desc}</Text> : null
+                  )
+                }): null
               }
-            </Text>
+            </View>
           </View>
           <View style={style.itemContain}>
-            <Text>备忘录：</Text>
+            <Text style={style.tipsTitle}>备忘录：</Text>
             <TextInput 
               style={style.memo}
               value={memo}
@@ -174,7 +192,7 @@ export default class Index extends Component {
 const style = StyleSheet.create({
   // 顶部栏样式
   topBar:{
-    height: 0.15*Dimensions.get('window').height,
+    height: 0.1*Dimensions.get('window').height,
     backgroundColor: '#54BCBD',
     flexDirection: 'row',
     justifyContent:'space-between',
@@ -241,8 +259,11 @@ const style = StyleSheet.create({
     marginTop: 6,
     marginLeft: 8
   },
-  comment:{
-
+  tipsTitle:{
+    fontSize: 18
+  },
+  tipsDesc:{
+    flexDirection: 'column'
   },
   memo:{
     width: 0.9*Dimensions.get('window').width
