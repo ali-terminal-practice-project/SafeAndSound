@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
-import { Text, View, Button,Image,StyleSheet } from 'react-native'
+import { Text, View, Button,Image,StyleSheet ,TouchableWithoutFeedback,Linking} from 'react-native'
 
 export default class Hotel extends Component {
+  open=()=>{
+		let url = 'http://www.baidu.com';
+        Linking.openURL(url) 
+	}
   render() {
     const { navigation } = this.props
     return (
@@ -18,14 +22,20 @@ export default class Hotel extends Component {
           source={require('./images/1.jpg')}
         />
 
-        <span style={[styles.fbutton]}>
+        {/* <span style={[styles.fbutton]}>
             <a href="http://i.meituan.com/awp/h5/hotel/search/search.html"
                target="_blank"
                rel="noopener noreferrer"
-               style={[{color: black},{fontSize:16},{left: 44},{top: 376}]}>
+               style={[{fontSize:16},{left: 44},{top: 376}]}>
                 美团酒店预订
             </a>
-        </span>
+        </span> */}
+         <TouchableWithoutFeedback onPress={this.open}>
+		             <View >
+	                    <Text>点击我打开美团</Text>
+	                 </View>
+                </TouchableWithoutFeedback>
+
 {/* //          广告位宣传图2 */}
         <Image
           imageStyle={ { borderRadius:5}}
@@ -34,14 +44,20 @@ export default class Hotel extends Component {
         />
 
 {/* //          携程第三方链接跳转 */}
-        <span style={[styles.fbutton]}>
+        {/* <span style={[styles.fbutton]}>
             <a href="https://www.ctrip.com/?sid=155952&allianceid=4897&ouid=index"
                target="_blank"
                rel="noopener noreferrer"
-               style={[{color: black},{fontSize:16},{right: 19},{top: 674}]}>
+               style={[{fontSize:16},{right: 19},{top: 674}]}>
                 携程酒店预订
             </a>
-        </span>
+        </span> */}
+         <TouchableWithoutFeedback onPress={this.open}>
+		             <View >
+	                    <Text>点击我打开百度</Text>
+	                 </View>
+                </TouchableWithoutFeedback>
+
 
 {/* //          广告位宣传图3 */}
         <Image
@@ -50,24 +66,37 @@ export default class Hotel extends Component {
           source={require('./images/3.jpg')}
         />
 {/* //          更多 */}
-        <span style={[{color: black},{fontSize:16},{left: 44},{top: 376}]}>
+
+        {/* <span style={[{fontSize:16},{left: 44},{top: 376}]}>
            <a href="http://i.meituan.com/awp/h5/hotel/search/search.html"
                target="_blank"
               rel="noopener noreferrer"
-               style={[{color: black},{fontSize:20}]}>
+               style={[{fontSize:20}]}>
                >
                 更多...
             </a>
-        </span>
-        <span style={[{color: black},{fontSize:16},{left: 44},{top: 376}]}>
+        </span> */}
+       <TouchableWithoutFeedback onPress={this.open}>
+		             <View >
+	                    <Text>点击我打开百度</Text>
+	                 </View>
+                </TouchableWithoutFeedback>
+
+
+        {/* <span style={[{fontSize:16},{left: 44},{top: 376}]}>
                 没想好酒店，打开小红书看看吧
               <Button
-                      style={[{color: black},{fontSize:14},{flex:1}]}
+                      style={[{fontSize:14},{flex:1}]}
                       title="打开小红书"
 
               />
-        </span>
-
+        </span> */}
+      
+      <TouchableWithoutFeedback onPress={this.open}>
+		             <View >
+	                    <Text>点击我打开百度</Text>
+	                 </View>
+                </TouchableWithoutFeedback>
 
       </View>
     )

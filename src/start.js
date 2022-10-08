@@ -21,7 +21,7 @@ function HomeScreen({navigation}) {
       <Text style={[styles.TheText]}>S</Text>
 
       <Button
-        color="transparent"
+        // color="transparent"
         title={'Login...'}
         onPress={() => navigation.navigate('Login')}
       />

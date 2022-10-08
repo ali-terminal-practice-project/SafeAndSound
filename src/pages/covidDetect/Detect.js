@@ -2,7 +2,7 @@ import { BottomSheetAndroid } from '@react-navigation/stack/lib/typescript/src/T
 import React, { Component } from 'react'
 import { Text, View, Button, TextInput, StyleSheet, Dimensions,Alert } from 'react-native'
 
-export default class index extends Component {
+export default class Detect extends Component {
   constructor() {
     super()
 
