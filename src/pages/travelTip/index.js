@@ -79,14 +79,14 @@ export default class Index extends Component {
     return (
       <View style={style.contain}>
         <StatusBar backgroundColor="#54BCBD"></StatusBar>
-        <View style={style.topBar}>
+        {/* <View style={style.topBar}>
           <Ionicons
             name={"chevron-back-outline"} 
             style={style.topBarIcon} 
             onPress={() => navigation.navigate('Menu')}>
           </Ionicons>
           <Text style={style.topBarText}>出行小贴士</Text>
-        </View>
+        </View> */}
         <View style={style.tipsContain}>
           <View style={[style.itemContain,style.weatherContain]}>
             <View style={style.weather}>

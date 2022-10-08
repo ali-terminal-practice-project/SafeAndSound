@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, Image, Dimensions} from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-
 export default class Index extends Component {
     render() {
         const { navigation } = this.props
