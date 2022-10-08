@@ -10,6 +10,7 @@ import Download from './pages/download/Download'
 import Hotel from './pages/hotel/Hotel'
 import Ticket from './pages/ticket/Ticket'
 import Tip from './pages/travelTip/Tip'
+import scanQRCode from './pages/covidDetect/scanQRcode'
 
 function HomeScreen({navigation}) {
   return (
@@ -59,6 +60,7 @@ export default class index extends Component {
         <Stack.Screen name="Hotel" component={Hotel} />
         <Stack.Screen name="Ticket" component={Ticket} />
         <Stack.Screen name="Tip" component={Tip} />
+        <Stack.Screen name='scanQRCode' component={scanQRCode}/>
       </Stack.Navigator>
     );
   }

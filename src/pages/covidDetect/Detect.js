@@ -64,7 +64,7 @@ export default class index extends Component {
         </View>
 
         <View style={[styles.btn2]}>
-        <Button title="扫码检测" onPress={this.scanQRCode} color= 'rgb(84, 188, 198)'/>
+        <Button title="扫码检测" onPress={() => navigation.navigate('scanQRcode')} color= 'rgb(84, 188, 198)'/>
         </View>
         
       </View>
