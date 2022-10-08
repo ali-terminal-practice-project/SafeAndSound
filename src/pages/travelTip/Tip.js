@@ -42,7 +42,7 @@ export default class Index extends Component {
     fetch(`https://v0.yiketianqi.com/free/day?appid=32189289&appsecret=3RdKetVh&unescape=1&city=${desCity}`)
     .then((response) => response.json())
     .then((json) => {
-      localStorage.setItem('desdata', json);
+      // localStorage.setItem('desdata', json);
       this.setState({ desdata: json });
     })
     .catch((error) => console.error(error))
@@ -60,7 +60,7 @@ export default class Index extends Component {
     });
   }
   render() {
-    console.log(localStorage.getItem('desdata'));
+    // console.log(localStorage.getItem('desdata'));
     const { navigation } = this.props;
     const { curdata,desdata, weaIcon, memo} = this.state;
     const {wea_img:cur_wea_img, date: cur_date, wea: cur_wea, tem_night: cur_tem_night, tem_day: cur_tem_day, win: cur_win, win_speed: cur_win_speed, city: cur_city} = curdata;
