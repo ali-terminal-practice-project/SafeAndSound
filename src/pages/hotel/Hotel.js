@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Button,Image } from 'react-native'
+import { Text, View, Button,Image,StyleSheet } from 'react-native'
 
 export default class Hotel extends Component {
   render() {
