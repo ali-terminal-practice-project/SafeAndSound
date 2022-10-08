@@ -41,3 +41,10 @@ Failed to load configuration
 npm i jetifier或yarn add jetifier
 npx jetify
 ```
+# 一些值得学习的参考资料
+## 依赖库
+### 地图
+[RNE-pro](https://supervons.github.io/react-native-echarts-pro-docs/zh-cn/docs/intro/)
+
+## 参考文档
+[地图组件学习](https://juejin.cn/post/6992857405042212872)
