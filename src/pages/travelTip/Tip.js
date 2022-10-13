@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Text, View, Dimensions, StyleSheet, TextInput} from 'react-native'
+import { Text, View, Dimensions, StyleSheet, TextInput,DeviceEventEmitter} from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import Fontisto from 'react-native-vector-icons/Fontisto'
+import Global from '../../Global'
 export default class Index extends Component {
   constructor(props) {
     super(props);
@@ -20,12 +21,33 @@ export default class Index extends Component {
         "shachen": "wind",
         "wu": "fog"
       },
-      memo:"",
-      curCity:'杭州',
-      desCity: '成都'
+      // memo:Global.params.memo,
+      memo:'',
+      curCity:Global.params.curCity,
+      desCity: Global.params.desCity
       // 两个城市可以根据政策查询Policy中查询到的得到值
     };
   }
+
+//   componentDidMount() {
+//     //收到监听
+//     this.listener = DeviceEventEmitter.addListener('changeTitle', (from) => {
+//     //收到监听后想做的事情
+//     // console.log(message);  //监听
+//     console.log("receive")
+//     console.log(from)
+//     this.setState({
+//       memo:from
+//     })
+//     })
+// }
+// componentWillUnmount() {
+//     //移除监听
+//     if (this.listener) {
+//       this.listener.remove();
+//     }
+//   }
+
   //  'shachen': ,'wu':,'bingbao',
   componentDidMount() {
     const {curCity, desCity} = this.state;

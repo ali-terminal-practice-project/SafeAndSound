@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import {
   Text, View, Button, FlatList, StyleSheet, TextInput,
   TouchableOpacity,
-  Dimensions
+  Dimensions,DeviceEventEmitter
 } from 'react-native'
 import citys from './city.json'
 import Picker from 'react-native-picker'
 // import {Picker} from '@react-native-picker/picker';
 import area from './area.json'
+import Global from '../../Global'
 export default class Policy extends Component {
 
   constructor(props) {
@@ -233,6 +234,12 @@ export default class Policy extends Component {
     console.log(this.state.table)
 
     this.setState({ isShow: true })
+    // DeviceEventEmitter.emit('changeTitle','333333')
+    console.log(Global)
+    Global.params = {
+      curCity: from[1],
+  desCity: to[1],
+    }
   }
   render() {
     const { navigation } = this.props
@@ -265,8 +272,16 @@ export default class Policy extends Component {
         </TouchableOpacity>
         <Button
           title='查询疫情出入政策'
+          style={[style.btn]}
+          
           onPress={() => this.showResult()}
         />
+         {/* <Button
+          title='查看出行建议'
+          style={[style.btn]}
+          
+          onPress={() =>navigation.navigate('Tip')}
+        /> */}
         <Button
           title="返回主菜单"
           onPress={() => navigation.navigate('Menu')}
@@ -293,5 +308,9 @@ const style = StyleSheet.create({
   },
   context: {
     fontSize: 7,
+  },
+  btn:{
+    width:20,
+    height:20
   }
 })
