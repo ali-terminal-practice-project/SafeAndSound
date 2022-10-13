@@ -1,130 +1,93 @@
 import React, { Component } from 'react'
-import { Text, View, Button,Image,StyleSheet ,TouchableWithoutFeedback,Linking} from 'react-native'
+import { Text, View, Button, Linking, Image, Dimensions, StyleSheet} from 'react-native'
 
 export default class Hotel extends Component {
-  open=()=>{
-		let url = 'http://www.baidu.com';
-        Linking.openURL(url) 
-	}
   render() {
-    const { navigation } = this.props
+    const { navigation } = this.props;
+    // Linking.openURL('http:baidu.com');
     return (
       <View>
-        <Text> 住宿 </Text>
-        <Button
-          style={[styles.button]}
-          title="<"
-          onPress={() => navigation.navigate('Menu')}
-         />
-        <Image
-          imageStyle={ { borderRadius:5}}
-          style={[styles.image1]}
-          source={require('./images/1.jpg')}
-        />
-
-        {/* <span style={[styles.fbutton]}>
-            <a href="http://i.meituan.com/awp/h5/hotel/search/search.html"
-               target="_blank"
-               rel="noopener noreferrer"
-               style={[{fontSize:16},{left: 44},{top: 376}]}>
-                美团酒店预订
-            </a>
-        </span> */}
-         <TouchableWithoutFeedback onPress={this.open}>
-		             <View >
-	                    <Text>点击我打开美团</Text>
-	                 </View>
-                </TouchableWithoutFeedback>
-
-{/* //          广告位宣传图2 */}
-        <Image
-          imageStyle={ { borderRadius:5}}
-          style={[styles.image1]}
-          source={require('./images/1.jpg')}
-        />
-
-{/* //          携程第三方链接跳转 */}
-        {/* <span style={[styles.fbutton]}>
-            <a href="https://www.ctrip.com/?sid=155952&allianceid=4897&ouid=index"
-               target="_blank"
-               rel="noopener noreferrer"
-               style={[{fontSize:16},{right: 19},{top: 674}]}>
-                携程酒店预订
-            </a>
-        </span> */}
-         <TouchableWithoutFeedback onPress={this.open}>
-		             <View >
-	                    <Text>点击我打开百度</Text>
-	                 </View>
-                </TouchableWithoutFeedback>
-
-
-{/* //          广告位宣传图3 */}
-        <Image
-          imageStyle={ { borderRadius:5}}
-          style={[styles.image1]}
-          source={require('./images/3.jpg')}
-        />
-{/* //          更多 */}
-
-        {/* <span style={[{fontSize:16},{left: 44},{top: 376}]}>
-           <a href="http://i.meituan.com/awp/h5/hotel/search/search.html"
-               target="_blank"
-              rel="noopener noreferrer"
-               style={[{fontSize:20}]}>
-               >
-                更多...
-            </a>
-        </span> */}
-       <TouchableWithoutFeedback onPress={this.open}>
-		             <View >
-	                    <Text>点击我打开百度</Text>
-	                 </View>
-                </TouchableWithoutFeedback>
-
-
-        {/* <span style={[{fontSize:16},{left: 44},{top: 376}]}>
-                没想好酒店，打开小红书看看吧
-              <Button
-                      style={[{fontSize:14},{flex:1}]}
-                      title="打开小红书"
-
-              />
-        </span> */}
-      
-      <TouchableWithoutFeedback onPress={this.open}>
-		             <View >
-	                    <Text>点击我打开百度</Text>
-	                 </View>
-                </TouchableWithoutFeedback>
-
+        <View style={style.contain}>
+          <View style={style.link}>
+            <Image 
+              source={require('./image/meituan.png')}
+              style={style.image}>
+            </Image>
+            <Text 
+              style={style.linkTitle} 
+              onPress={()=>{Linking.openURL('https://minsu.dianping.com/')}}>
+              美团
+            </Text>
+          </View>
+          <View style={style.link}>
+            <Image 
+              source={require('./image/xiecheng.jpg')}
+              style={style.image}>
+            </Image>
+            <Text 
+              style={style.linkTitle} 
+              onPress={()=>{Linking.openURL('https://www.ctrip.com/')}}>
+              携程
+            </Text>
+          </View>
+          <View style={style.link}>
+            <Image 
+              source={require('./image/qunaer.png')}
+              style={style.image}>
+            </Image>
+            <Text 
+              style={style.linkTitle} 
+              onPress={()=>{Linking.openURL('https://www.qunar.com/')}}>
+              去哪儿
+            </Text>
+          </View>
+          <View style={style.link}>
+            <Image 
+              source={require('./image/feizhu.png')}
+              style={style.image}>
+            </Image>
+            <Text 
+              style={style.linkTitle} 
+              onPress={()=>{Linking.openURL('https://www.fliggycn.com/')}}>
+              飞猪
+            </Text>
+          </View>
+          <View style={style.linkRed}>
+            <Text>没想好酒店？打开小红书看看吧</Text>
+            <Button 
+              onPress={()=>{Linking.openURL('https://www.xiaohongshu.com/explore')}}
+              title="打开小红书"
+              color="#DE868F"  
+            >
+            </Button>
+          </View>
+        </View>
       </View>
     )
   }
 }
 
-const styles = StyleSheet.create({
-     button: {
-            left: 16,
-            top: 60,
-     },
-     Image1: {
-      //  left: 10%,
-      //  height: 19%,
-      //  height: 218,
-       width: 302
-     },
-     Image2: {
-      //  left: 5%,
-      //  top: 57%,
-       height: 170,
-       width: 160,
-     },
-     Image3: {
-      //  right: 5%,
-      //  top: 57%,
-       height: 170,
-       width: 160,
-     },
-
+const style = StyleSheet.create({
+  image: {
+    height:  0.4*Dimensions.get('window').width,
+    width: 0.4*Dimensions.get('window').width
+  },
+  linkTitle:{
+    fontSize: 20,
+    textAlign: 'center'
+  },
+  link:{
+    flexDirection: 'column',
+    marginVertical: 15
+  },
+  contain:{
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    marginVertical: 40
+  },
+  linkRed:{
+    marginVertical: 20
+  }
 })

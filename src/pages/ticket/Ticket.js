@@ -1,114 +1,87 @@
 import React, { Component } from 'react'
-import { Text, View, TextInput, StyleSheet, Image, Button, Dimensions, Navigator, TouchableWithoutFeedback,
-   WebView, Linking, AppRegistry } from 'react-native'
-
+import { Text, View, Linking, Image, StyleSheet, Dimensions} from 'react-native'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 export default class Ticket extends Component {
-
-   open = () => {
-      let url = 'http://www.baidu.com';
-      Linking.openURL(url)
-   }
-   render() {
-      const { navigation } = this.props
-      return (
-         <View>
-            <Text> 购票</Text>
-            <Button
-               style={[styles.button]}
-               title="<"
-               onPress={() => navigation.navigate('Menu')}
-            />
-
-            <Image
-               style={[styles.background]}
-               // source={require('./images/1.jpg')}
-               source={{ uri: "http://176.51.6.120:80/ajia_code/img/404/404_img1.png" }}
-            />
-            {/* //          文字装饰 */}
-            {/* <Text style={[{color: black},{fontSize:20},{width: },{height: }]}> 今日你想 </Text>
-           <Text style={[{color: black},{fontSize:28},{width: },{height: }]}> 去哪里 </Text> */}
-
-            <Text > 今日你想 </Text>
-            <Text> 去哪里 </Text>
-            {/* //          出行地、目的地icon图 */}
-            <Image
-               style={[styles.icon1]}
-               // source={require('./images/2.jpg')}
-               source={{ uri: "http://176.51.6.120:80/ajia_code/img/404/404_img1.png" }}
-            />
-            <Image
-               style={[styles.icon2]}
-               // source={require('./images/3.jpg')}
-               source={{ uri: "http://176.51.6.120:80/ajia_code/img/404/404_img1.png" }}
-            />
-            {/* //          出行地输入框 */}
-            <TextInput style={[{ fontSize: 20 }, { left: 55 }, { top: 546 }, { borderRadius: 30 }]}
-               placeHolder="出行地"
-            />
-            {/* //         icon */}
-            <Image
-               style={[styles.icon]}
-               // source={require('./images/4.jpg')}
-               source={{ uri: "http://176.51.6.120:80/ajia_code/img/404/404_img1.png" }}
-            />
-            {/* //         目的地 */}
-            <TextInput style={[{ fontSize: 20 }, { right: 55 }, { top: 546 }]}
-               placeHolder="目的地"
-            />
-            {/* //          点击跳转 */}
-
-            {/* <span style={[styles.fbutton]}>
-               <a href="https://www.12306.cn/index/"
-                  target="_blank"
-                  rel="noopener noreferrer">
-               <Text> 12306在线订票>>></Text>
-               </a>
-            </span> */}
-
-            <TouchableWithoutFeedback onPress={this.open}>
-               <View >
-                  <Text>点击我打开百度</Text>
-               </View>
-            </TouchableWithoutFeedback>
-
-
-         </View>
-      )
-   }
+  render() {
+    // const { navigation } = this.props
+    return (
+      <View>
+        <Image 
+          source={require('./image/earth.jpg')}
+          style={style.image}>
+        </Image>
+        <Text style={style.text1}>
+          今日你想
+        </Text>
+        <Text style={style.text2}>
+          到哪里
+        </Text>
+        <View style={style.linkTrain}>
+          <Ionicons name="train" style={style.iconStyle}></Ionicons>  
+          <View 
+            style={style.linkTitle} 
+            onPress={()=>{Linking.openURL('https://www.12306.cn/index/')}}>
+            <Text>12306在线订票</Text>
+            <Ionicons name="chevron-forward-outline"></Ionicons>
+            <Ionicons name="chevron-forward-outline"></Ionicons>
+            <Ionicons name="chevron-forward-outline"></Ionicons>
+          </View>
+        </View>
+        <View style={style.linkTrain}>
+          <Ionicons name="airplane" style={style.iconStyle}></Ionicons>  
+          <View 
+            style={style.linkTitle} 
+            onPress={()=>{Linking.openURL('https://www.qunar.com/')}}>
+            <Text>去哪儿订票</Text>
+            <Ionicons name="chevron-forward-outline"></Ionicons>
+            <Ionicons name="chevron-forward-outline"></Ionicons>
+            <Ionicons name="chevron-forward-outline"></Ionicons>
+          </View>
+        </View>
+        <View style={style.linkTrain}>
+          <Ionicons name="airplane" style={style.iconStyle}></Ionicons>  
+          <View 
+            style={style.linkTitle} 
+            onPress={()=>{Linking.openURL('https://www.ctrip.com/')}}>
+            <Text>携程订票</Text>
+            <Ionicons name="chevron-forward-outline"></Ionicons>
+            <Ionicons name="chevron-forward-outline"></Ionicons>
+            <Ionicons name="chevron-forward-outline"></Ionicons>
+          </View>
+        </View>
+      </View>
+    )
+  }
 }
-
-const styles = StyleSheet.create({
-   button: {
-      left: 16,
-      top: 60,
-   },
-
-
-   background: {
-      height: 102,
-      width: Dimensions.get('window').width,
-   },
-   fbutton: {
-      // width:
-      //    height:
-      justifyContent: 'center',
-      flex: 1
-   },
-   icon: {
-      position: 'absolute',
-
-      justifyContent: 'center',
-      alignItems: 'center',
-   },
-   icon1: {
-      position: 'absolute',
-      // top: 62% 
-      // left: 22 %,
-   },
-   icon2: {
-      position: 'absolute'
-      // top: 62 %,
-      // right: 22 %,
-   },
-
+const style = StyleSheet.create({
+  text1:{
+    fontSize: 25,
+    marginLeft: 20,
+    marginVertical: 5
+  },
+  text2:{
+     fontSize: 30,
+     marginLeft:20,
+     marginVertical: 5
+  },
+  linkTrain:{
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginVertical: 15
+  },
+  linkTitle:{
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: 0.5*Dimensions.get('window').width,
+    height: 50,
+    backgroundColor: "#54BCBD",
+    borderRadius: 10,
+    textAlign: 'center',
+    lineHeight: 40,
+    paddingLeft: 20
+  },
+  iconStyle:{
+    fontSize: 50, 
+    marginRight: 10
+  }
 })
