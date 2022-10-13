@@ -5,8 +5,8 @@ import {
   Dimensions,DeviceEventEmitter
 } from 'react-native'
 import citys from './city.json'
-import Picker from 'react-native-picker'
-// import {Picker} from '@react-native-picker/picker';
+// import Picker from 'react-native-picker'
+import Picker from '@react-native-picker/picker';
 import area from './area.json'
 import Global from '../../Global'
 export default class Policy extends Component {

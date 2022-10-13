@@ -14,6 +14,16 @@ npm install
 ```
 yarn android
 ```
+# 导出apk
+中间有很多踩坑我就不一一细举了，主要是有一个react-native-picker的依赖库，已经一年半没有人维护了
+我后来用了另外一个库
+
+打包
+```
+.\gradlew assembleRelease
+```
+apk目录: /android/app/build/outputs
+我在项目总目录下的output也复制了一份apk文件
 # 通常存在的报错
 ### 切换分支时不能运行
 
